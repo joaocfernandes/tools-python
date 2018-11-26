@@ -643,7 +643,7 @@ class Writer(CreationInfoWriter, ReviewInfoWriter, FileWriter, PackageWriter,
         self.graph = to_isomorphic(self.graph)
 
         # Write file
-        self.graph.serialize(self.out, 'pretty-xml', encoding='utf-8')
+        self.out.write(self.graph.serialize(format='pretty-xml', encoding='utf-8').decode())
 
 
 def write_document(document, out, validate=True):
