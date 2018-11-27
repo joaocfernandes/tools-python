@@ -6,7 +6,8 @@
 if __name__ == '__main__':
     import sys
     import codecs
-    from spdx.writers.tagvalue import write_document, InvalidDocumentError
+    from spdx.writers.rdf import Writer
+    from spdx.writers.tagvalue import InvalidDocumentError
     from spdx.document import Document, License, LicenseConjunction, ExtractedLicense
     from spdx.version import Version
     from spdx.creationinfo import Person
@@ -77,10 +78,11 @@ if __name__ == '__main__':
 
     file = sys.argv[1]
     with codecs.open(file, mode='w', encoding='utf-8') as out:
+        spdx_rdf_writer = Writer(doc, out)
         try:
-            write_document(doc, out)
+            spdx_rdf_writer.write()
         except InvalidDocumentError:
-            print 'Document is Invalid'
+            print ('Document is Invalid')
             messages = []
             doc.validate(messages)
-            print '\n'.join(messages)
+            print ('\n'.join(messages))
