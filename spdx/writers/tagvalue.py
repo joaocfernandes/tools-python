@@ -251,7 +251,6 @@ def write_document(document, out, validate=True):
     out.write('# Document Information\n\n')
     write_value('SPDXVersion', str(document.version), out)
     write_value('DataLicense', document.data_license.identifier, out)
-    write_value('DocumentName', document.name, out)
     write_value('SPDXID', 'SPDXRef-DOCUMENT', out)
     write_value('DocumentNamespace', document.namespace, out)
     if document.has_comment:
