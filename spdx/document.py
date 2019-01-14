@@ -271,13 +271,12 @@ class Document(object):
       Type: Annotation.
     """
 
-    def __init__(self, version=None, data_license=None, name=None, spdx_id=None,
+    def __init__(self, version=None, data_license=None, spdx_id=None,
                  namespace=None, comment=None, package=None):
         # avoid recursive impor
         from spdx.creationinfo import CreationInfo
         self.version = version
         self.data_license = data_license
-        self.name = name
         self.spdx_id = spdx_id
         self.ext_document_references = []
         self.comment = comment
@@ -319,7 +318,6 @@ class Document(object):
         """
         messages = self.validate_version(messages)
         messages = self.validate_data_lics(messages)
-        messages = self.validate_name(messages)
         messages = self.validate_spdx_id(messages)
         messages = self.validate_namespace(messages)
         messages = self.validate_ext_document_references(messages)
@@ -343,12 +341,6 @@ class Document(object):
         # FIXME: REALLY? what if someone wants to use something else?
             if self.data_license.identifier != 'CC0-1.0':
                 messages = messages + ['Document data license must be CC0-1.0.']
-
-        return messages
-
-    def validate_name(self, messages):
-        if self.name is None:
-            messages = messages + ['Document has no name.']
 
         return messages
 
