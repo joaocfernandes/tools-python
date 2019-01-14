@@ -36,8 +36,6 @@ def load_license_list(file_name):
         licenses = json.load(lics)
         version = licenses['licenseListVersion'].split('.')
         for lic in licenses['licenses']:
-            if lic.get('isDeprecatedLicenseId'):
-                continue
             name = lic['name']
             identifier = lic['licenseId']
             licenses_map[name] = identifier
