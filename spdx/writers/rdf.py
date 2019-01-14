@@ -151,7 +151,7 @@ class LicenseWriter(BaseWriter):
             type_triple = (license_node, RDF.type, self.spdx_namespace.ExtractedLicensingInfo)
             self.graph.add(type_triple)
             ident_triple = (license_node, self.spdx_namespace.licenseId,
-                            Literal('LicenseRef-' + license.identifier))
+                            Literal('LicenseRef-' + lic.identifier))
             self.graph.add(ident_triple)
             text_triple = (license_node, self.spdx_namespace.extractedText, Literal(lic.text))
             self.graph.add(text_triple)
