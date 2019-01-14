@@ -236,6 +236,9 @@ class ExtractedLicense(License):
     def __lt__(self, other):
         return isinstance(other, ExtractedLicense) and self.identifier < other.identifier
 
+    def __hash__(self):
+        return hash((self.text, self.comment, self.full_name))
+
     def add_xref(self, ref):
         self.cross_ref.append(ref)
 
